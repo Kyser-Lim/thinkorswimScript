@@ -1,0 +1,13 @@
+//This is thinkScript code to determine if the current stock has
+//its 8, 21, 34, 55, and 89 EMAs reverse stacked with 89EMA on top of 
+//other EMAs and 8 below all other EMAs
+
+input price = close;
+
+def EMA8 = ExpAverage(price, 8);
+def EMA21 = ExpAverage(price, 21);
+def EMA34 = ExpAverage(price, 34);
+def EMA55 = ExpAverage(price, 55);
+def EMA89 = ExpAverage(price, 89);
+def result = EMA8<EMA21 && EMA21<EMA34 && EMA34<EMA55 && EMA55<EMA89;
+    AddLabel(yes, "Reverse Stacked EMAs", if result then Color.GREEN else Color.RED);
